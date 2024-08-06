@@ -10,33 +10,27 @@ connectToMongoDB("mongodb://127.0.0.1:27017/real-estate-listing")
   .catch((err) => console.log("Mongo Error", err));
 
 //Routes
-app.post("/api/property"),
-  async (req, res) => {
-    const body = req.body;
-    if (
-      !body ||
-      !body.Title ||
-      !body.Description ||
-      !body.Price ||
-      !body.Property_type ||
-      !body.Listing_type ||
-      !body.Bedrooms ||
-      !body.Property_id
-    ) {
-      return res.status(400).json({ msg: "All fields are required" });
-    }
-    const result = await Property.create({
-      title: req.body.Title,
+
+app.post('/addtask', function(req,res){
+    Property.create({
+          title: req.body.Title,
       description: req.body.Description,
       price: req.body.Price,
       property_type: req.body.Property_type,
       listing_type: req.body.Listing_type,
       bedrooms: req.body.Bedrooms,
       property_id: req.body.Property_id,
+    })
+    .then(newTask => {
+        console.log("Successfully Created Task!", newTask);
+        res.redirect('back');
+    })
+    .catch(err => {
+        console.log("Error Creating Task!!", err);
+        // res.status(500).send("Error Creating Task!!");
+        res.redirect('back');
     });
-    console.log("result", result);
-    return res.status(201).json({ msg: "success" });
-  };
+});
 
 app.get("/", (req, res) => {
   return res.render("homepage");
