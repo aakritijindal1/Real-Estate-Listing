@@ -26,13 +26,13 @@ app.post("/api/property"),
       return res.status(400).json({ msg: "All fields are required" });
     }
     const result = await Property.create({
-      title: body.Title,
-      description: body.Description,
-      price: body.Price,
-      property_type: body.Property_type,
-      listing_type: body.Listing_type,
-      bedrooms: body.Bedrooms,
-      property_id: body.Property_id,
+      title: req.body.Title,
+      description: req.body.Description,
+      price: req.body.Price,
+      property_type: req.body.Property_type,
+      listing_type: req.body.Listing_type,
+      bedrooms: req.body.Bedrooms,
+      property_id: req.body.Property_id,
     });
     console.log("result", result);
     return res.status(201).json({ msg: "success" });
