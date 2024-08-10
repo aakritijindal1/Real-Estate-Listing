@@ -11,7 +11,7 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
     Price: {
-      type: String,
+      type: Number,
       required: true,
     },
     Property_type: {
@@ -23,11 +23,11 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
     Bedrooms: {
-      type: String,
+      type: Number,
       required: true,
     },
     Property_id: {
-      type: String,
+      type: Number,
       required: true,
     },
     visitHistory: [{ timestamp: { type: Number } }],
@@ -38,6 +38,6 @@ const propertySchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const Property = mongoose.model("Property", propertySchema);
+const Estate = mongoose.model("Property", propertySchema);
 
-module.exports = Property;
+module.exports = Estate;
